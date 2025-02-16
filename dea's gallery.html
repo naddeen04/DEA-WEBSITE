@@ -1,0 +1,181 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>deahadhi's</title>
+    <link rel="shortcut Icon" type="image/png" href="cloud.png">
+    <style>
+        body {
+            font-family: Avenir, sans-serif;
+            margin: 0;
+            padding: 0;
+            font-size: 1.1rem; 
+        }
+
+        header {
+            background-color: #DCDCDC;
+            padding: 20px;
+            text-align: center;
+            background-image: url("babybreath.jpg");
+            background-size: cover;
+            background-repeat: no-repeat;
+            font-size: 1.6rem; 
+        }
+
+        nav {
+            background-color: #333;
+            color: black;
+            padding: 10px 0;
+            text-align: center;
+            font-size: 1.3rem; 
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            display: inline-block;
+            font-size: 1.3rem; 
+        }
+
+        nav a:hover {
+            background-color: #555;
+        }
+
+        main {
+            padding: 20px;
+            font-size: 1.2rem; 
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 5px 0; 
+            text-align: center;
+            font-size: 1rem; 
+        }
+
+        .album-container {
+            display: flex;
+            justify-content: center; 
+            margin-bottom: 20px;
+        }
+
+        .album {
+            width: 70%; 
+            position: relative;
+            overflow: hidden;
+        }
+
+        .album img,
+        .album video {
+            width: auto; 
+            height: 500px; 
+            object-fit: cover; 
+            border: 5px solid #ccc;
+            transition: transform 0.3s ease;
+            display: block; 
+            margin: 0 auto; 
+            cursor: pointer; 
+        }
+
+        .album:hover img,
+        .album:hover video {
+            transform: scale(1.1);
+        }
+
+        .album img,
+        .album video {
+            display: block; 
+            margin: 0 auto; 
+        }
+        h2 {
+            font-size: 2rem; 
+        }
+        .album h3 {
+            font-size: 1.4rem; 
+            margin-bottom: 10px; 
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1> <P> <font color="yellow";font size="40px">DEA'S  GALLERY</font> </P> </h1>
+    </header>
+
+    <nav>
+        <a href="dea's homepage.html">Home</a>
+        <a href="about dea.html">About</a>
+        <a href="dea's achievements.html">Achievements</a>
+        <a href="contact dea.html">Contact</a>
+        <a href="dea's gallery.html">Gallery</a>
+    </nav>
+
+    <main>
+        <center><h2>DEA'S MEMORIES</h2></center>
+
+        <div class="album-container">
+            <div class="album" id="album1">
+                <center><h3>DEA</h3></center>
+                <p>&nbsp;</p>
+                <img src="dea.jpg" alt="Photo 1">
+                <img src="dea bear.jpg" alt="Photo 2">
+                <img src="dea ood.jpg" alt="Photo 3">
+                <img src="dea dating.jpg" alt="Photo 4">
+            </div>
+
+            <div class="album" id="album2">
+                <center><h3>DEA FLORAL ART</h3></center>
+                <p>&nbsp;</p>
+                <video src="dea bunga.mp4" controls autoplay muted loop></video>
+                <video src="dea bouquet.mp4" controls autoplay muted loop></video>
+                <img src="bunga purple.jpg" alt="Photo 6">
+                <img src="bunga pink.jpg" alt="Photo 7">
+                <img src="bunga kuning.jpg" alt="Photo 8">
+            </div>
+        </div>
+    </main>
+        
+    <footer>
+        <p>&copy; dea's website</p>
+    </footer>
+
+    <script>
+        const album1 = document.getElementById('album1');
+        const album2 = document.getElementById('album2');
+
+        let currentImageIndex1 = 0;
+        let currentImageIndex2 = 0;
+
+        const images1 = album1.querySelectorAll('img');
+        const images2 = album2.querySelectorAll('img, video'); 
+
+        function showImage(album, index) {
+            const images = album === album1 ? images1 : images2;
+            images.forEach(image => image.style.display = 'none');
+            images[index].style.display = 'block';
+            if (album === album1) {
+                currentImageIndex1 = index;
+            } else {
+                currentImageIndex2 = index;
+            }
+        }
+
+        function autoSlideAlbum1() {
+            showImage(album1, (currentImageIndex1 + 1) % images1.length);
+            setTimeout(autoSlideAlbum1, 3000); 
+        }
+
+    
+        images2.forEach((image, index) => {
+            image.addEventListener('click', () => {
+                showImage(album2, (index + 1) % images2.length);
+            });
+        });
+
+        showImage(album1, currentImageIndex1);
+        autoSlideAlbum1();
+    </script>
+</body>
+</html>    
